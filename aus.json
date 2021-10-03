@@ -1,0 +1,54 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 500,
+    "title": "Total Fire in AUS from 2019-10 to 2020-01",
+    "projection": {
+        "type": "equirectangular"
+    },
+    "layer": [
+        {
+            "data": {
+                "url": "https://raw.githubusercontent.com/monlesliechen/data-analysis/main/AUS_TOPO.json",
+                "format": {
+                    "type": "topojson",
+                    "feature": "australian-states"
+                }
+            },
+            "mark": {
+                "type": "geoshape",
+                "fill": "white",
+                "stroke": "black"
+            }
+        },
+        {
+            "data": {
+                "url": "https://raw.githubusercontent.com/monlesliechen/data-analysis/main/fire_nrt_M6_96619.csv"
+            },
+            "mark": {
+                "type": "circle",
+                "tooltip": {
+                    "content": "data"
+                }
+            },
+            "encoding": {
+                "longitude": {
+                    "field": "longitude",
+                    "type": "quantitative"
+                },
+                "latitude": {
+                    "field": "latitude",
+                    "type": "quantitative"
+                },
+                
+                "color": {
+                    "field": "brightness",
+                    "type": "quantitative",
+                    "scale": {
+                        "scheme": "reds"
+                    }
+                }
+            }
+        }
+    ]
+}
